@@ -1,0 +1,711 @@
+:root {
+    --primary-pink: #ff69b4;
+    --secondary-pink: #ff1493;
+    --light-pink: #ffb6c1;
+    --white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Cursor trái tim màu hồng đẹp hơn */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="%23ff69b4" stroke="%23e91e63" stroke-width="1"/></svg>') 10 10, auto;
+}
+
+
+body {
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #f5c1d7, #e7acc9, #f5b5d0, #f8cee3);
+    background-size: 400% 400%;
+    animation: bgmove 15s ease-in-out infinite;
+    background-attachment: fixed;
+}
+
+@keyframes bgmove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+    20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+/* Main container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.13);
+    box-shadow: 0 8px 32px 0 rgba(255, 182, 213, 0.18);
+    border-radius: 32px;
+    max-width: 500px;
+    width: 100%;
+    margin: 40px auto;
+    transition: none;
+}
+
+.container:hover {
+    box-shadow: 0 8px 32px 0 rgba(255, 182, 213, 0.18);
+}
+
+/* Calculator screen */
+.calculator-screen {
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.calculator-title {
+    background: linear-gradient(135deg, #cc7986 0%, #fd537d 60%, #f0749d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(247, 152, 199, 0.3);
+}
+
+/* Display */
+.display {
+    width: 90%;
+    height: 55px;
+    background: linear-gradient(135deg, #ffd1dc, #ffb6d5, #f1c9dd, #ffd1dc);
+    background-size: 100% 100%;
+    animation: none !important;
+    border: 2.5px solid rgba(255, 182, 213, 0.35);
+    border-radius: 20px;
+    font-size: 28px;
+    text-align: right;
+    padding: 0 25px;
+    margin-bottom: 30px;
+    outline: none;
+    letter-spacing: 4px;
+    font-weight: bold;
+    color: #c2185b;
+    text-shadow: 0 2px 8px #fff8;
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: none;
+    backdrop-filter: blur(5px);
+}
+
+.display:focus {
+    border-color: var(--primary-pink);
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.1), 0 0 25px rgba(255, 105, 180, 0.4);
+    transform: none;
+}
+
+/* Buttons */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 18px auto 0 auto;
+    width: 100%;
+    background-size: 100% 100%;
+    animation: none !important;
+    border-radius: 28px;
+    box-shadow: 0 6px 32px 0 #ffb6c155;
+    border: none;
+    padding: 22px 0 18px 0;
+    transition: none;
+}
+
+.btn {
+    height: 70px;
+    width: 100%;
+    border: none;
+    border-radius: 22px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: none;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, #ffb6d5, #fdb1d7, #ffd1dc, #ffb6d5);
+    background-size: 100% 100%;
+    animation: none !important;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px #ffb6c133;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: none;
+}
+
+.btn:hover::before {
+    left: -100%;
+}
+
+.btn:hover {
+    transform: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: none;
+    transition: all 0.1s ease;
+}
+
+.btn-number {
+    background: linear-gradient(135deg, #f19bc0 0%, #f7a8ce 60%, #f09dc9 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.15rem;
+    border-radius: 14px;
+    height: 38px;
+    box-shadow: 0 2px 8px #ffb6c133;
+    animation: none !important;
+}
+
+.btn-number:hover {
+    background: linear-gradient(135deg, #f1a6cc 0%, #e696c0 100%);
+    box-shadow: 0 0 12px #eb97c1bb;
+}
+
+.btn-clear, .btn-enter {
+    background: linear-gradient(135deg, #ffd1dc, #ffb6c1);
+    color: #eea2cb;
+    font-weight: 700;
+    font-size: 1.15rem;
+    border-radius: 14px;
+    height: 38px;
+    box-shadow: 0 2px 8px #ffb6c133;
+    animation: none !important;
+}
+
+.btn-clear:hover, .btn-enter:hover {
+    background: linear-gradient(135deg, #f1bcc4, #ffd1dc);
+    color: #f8b2d5;
+    box-shadow: 0 0 12px #ffd1dcaa;
+}
+
+/* Avatar square */
+.input-avatar-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+}
+
+.avatar-square {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffb6d5 60%, #ffd1dc 100%);
+    border: 2.5px solid rgba(255, 182, 213, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 8px 32px 0 rgba(255, 182, 213, 0.18);
+    flex-shrink: 0;
+}
+
+.avatar-square img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.input-and-keypad {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 260px;
+}
+
+/* Birthday screen */
+.birthday-screen {
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Wishes page */
+.wishes-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    overflow: hidden;
+}
+
+.main-title {
+    text-align: center;
+    margin-bottom: 30px;
+    z-index: 10;
+    position: relative;
+}
+
+.rainbow-text {
+    font-size: 2.3em;
+    font-weight: 800;
+    background: linear-gradient(45deg, #f05ac3, #f141b7, #a7501f);
+    background-size: 700% 700%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowMove 4s ease-in-out infinite;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+    margin: 0;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes rainbowMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.subtitle {
+    font-size: 2em;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 15px;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from { 
+        text-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+        transform: scale(1);
+    }
+    to { 
+        text-shadow: 0 4px 30px rgba(255, 255, 255, 0.9);
+        transform: scale(1.05);
+    }
+}
+
+/* 3D Card */
+.birthday-card-section {
+    margin: 50px 0;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-3d {
+    font-family: 'Indie Flower', cursive !important;
+    color: #013243;
+    position: relative;
+    width: 320px;
+    height: 420px;
+    background: linear-gradient(135deg, #ffd1dc, #ffb6d5);
+    transform-style: preserve-3d;
+    transform: perspective(2000px);
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+    transition: 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 15px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="%23ffb6c1" stroke="%23ff69b4" stroke-width="2"/></svg>') 10 10, grab !important;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.card-3d:hover {
+    transform: perspective(2000px) rotateY(15deg) scale(1.1);
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+}
+
+.card-imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left;
+    transition: 1s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-bark {
+    position: absolute;
+    background: linear-gradient(135deg, #ffd1dc, #ffb6d5);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 1s ease;
+    border-radius: 15px;
+}
+
+.card-imgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.card-3d:hover .card-imgBox {
+    transform: rotateY(-135deg);
+}
+
+.card-3d:hover .card-bark {
+    opacity: 1;
+    transition: 0.8s;
+    box-shadow: 300px 200px 100px rgba(255, 105, 180, 0.3) inset;
+}
+
+.card-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 20px;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card-details h4 {
+    font-size: 28px;
+    line-height: 1.2;
+    font-family: 'Amatic SC', cursive !important;
+    color: #C0392B;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.card-details p {
+    font-size: 16px;
+    line-height: 1.3;
+    transform: rotate(-2deg);
+    padding: 1px 0;
+    color: #013243;
+    font-weight: 600;
+    margin: 3px 0;
+    opacity: 0;
+    animation: textSlideIn 0.6s ease-out forwards;
+    text-align: center;
+}
+
+@keyframes textSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Continue button */
+.continue-btn {
+    background: linear-gradient(45deg, #f362b2, #c574ba);
+    background-size: 600% 600%;
+    border: none;
+    color: rgb(231, 230, 231);
+    padding: 20px 40px;
+    font-size: 1.7em;
+    font-weight: 700;
+    border-radius: 45px;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    animation: buttonGlow 4s ease-in-out infinite;
+    z-index: 10;
+    position: relative;
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="%23ff1493" stroke="%23c2185b" stroke-width="2"/></svg>') 10 10, pointer !important;
+}
+
+@keyframes buttonGlow {
+    0%, 100% { 
+        background-position: 0% 50%;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: scale(1);
+    }
+    50% { 
+        background-position: 100% 50%;
+        box-shadow: 0 25px 60px rgba(255, 107, 107, 0.5);
+        transform: scale(1.05);
+    }
+}
+
+.continue-btn:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Background effects */
+.bubbles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: bubbleFloat linear infinite;
+}
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.bg-hearts {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.bg-heart {
+    position: absolute;
+    bottom: -50px;
+    animation: heartFloatBg linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes heartFloatBg {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-50vh) rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .rainbow-text {
+        font-size: 2.5em;
+    }
+    .subtitle {
+        font-size: 1.5em;
+    }
+    .continue-btn {
+        padding: 18px 45px;
+        font-size: 1.5em;
+    }
+    .card-3d {
+        width: 280px;
+        height: 380px;
+    }
+    .card-details h4 {
+        font-size: 22px;
+    }
+    .card-details p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-screen, .birthday-screen {
+        padding: 25px;
+        margin: 10px;
+        border-radius: 25px;
+    }
+    .calculator-title {
+        font-size: 26px;
+    }
+    .display {
+        height: 65px;
+        font-size: 24px;
+        padding: 0 20px;
+    }
+    .btn {
+        height: 60px;
+        font-size: 20px;
+    }
+    .buttons {
+        gap: 10px;
+        padding: 12px 0 10px 0;
+    }
+    .btn, .btn-number, .btn-clear, .btn-enter {
+        height: 48px;
+        font-size: 18px;
+        border-radius: 16px;
+    }
+    .card-3d {
+        width: 250px;
+        height: 340px;
+    }
+    .card-details h4 {
+        font-size: 20px;
+    }
+    .card-details p {
+        font-size: 12px;
+    }
+}
+
+/* Performance optimizations */
+.preload * {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+}
+
+/* Vô hiệu hóa các animation có thể gây rung lắc */
+.calculator-screen *, 
+.buttons *, 
+.display,
+.btn,
+.btn-number,
+.btn-clear,
+.btn-enter {
+    animation: none !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+}
+
+/* Chỉ cho phép animation background cho body */
+body {
+    animation: bgmove 10s ease-in-out infinite !important;
+}
+
+/* Thêm để ngăn rung lắc không mong muốn */
+.btn, .btn-number, .btn-clear, .btn-enter {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.display {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Ngăn animation background gây rung lắc */
+.buttons, .btn, .btn-number, .btn-clear, .btn-enter, .display {
+    animation: none !important;
+    background-attachment: scroll !important;
+}
+
+/* Đảm bảo container không rung */
+.container, .calculator-screen, .input-and-keypad {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Vô hiệu hóa hoàn toàn tất cả animation và transition cho calculator */
+.calculator-screen, 
+.calculator-screen *,
+.container,
+.container * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Chỉ giữ lại transform cho translateZ(0) để tối ưu performance */
+.btn, .btn-number, .btn-clear, .btn-enter, .display, 
+.container, .calculator-screen, .input-and-keypad {
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    will-change: auto !important;
+}
+
+/* Đảm bảo hoàn toàn không có rung lắc */
+.calculator-screen {
+    position: relative !important;
+    isolation: isolate !important;
+}
+
+.container {
+    contain: layout style paint !important;
+}
+
+/* Tắt mọi hiệu ứng có thể gây rung lắc */
+.btn:hover,
+.btn:active,
+.btn:focus,
+.display:hover,
+.display:active,
+.display:focus {
+    transform: translateZ(0) !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Khắc phục rung lắc bàn phím trên mobile và desktop */
+.calculator-screen, 
+.calculator-screen *, 
+.buttons, 
+.buttons *, 
+.btn, 
+.btn-number, 
+.btn-clear, 
+.btn-enter, 
+.display {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    background-attachment: scroll !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+    .container, .calculator-screen, .buttons {
+        padding: 0 !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="preload">
+    <!-- Enhanced animated background -->
+    <div class="bubbles" id="bubbles"></div>
+    <div class="bg-hearts" id="bgHearts"></div>
+
+    <div class="container">
+        <!-- Calculator screen -->
+        <div class="calculator-screen" id="calculatorScreen"> 
+            <div class="input-avatar-row">
+                <div class="avatar-square">
+                    <img id="avatarImg" src="img/anh.jpg" alt="Avatar" style="display:block;">
+                </div>
+                <div class="input-and-keypad">
+                    <div class="calculator-title">Nhập ngày sinh của bạn.......</div>
+                    <input type="password" class="display" id="display" placeholder="••••••••" maxlength="8">
+                    <div class="buttons">
+                        <button class="btn btn-number" onclick="appendToDisplay('1')">1</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('2')">2</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('3')">3</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('4')">4</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('5')">5</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('6')">6</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('7')">7</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('8')">8</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('9')">9</button>
+                        <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+                        <button class="btn btn-number" onclick="appendToDisplay('0')">0</button>
+                        <button class="btn btn-enter" onclick="checkPassword()">✓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="birthday-screen" id="birthdayScreen" style="display:none;">
+        <div class="wishes-page" id="wishesPage">
+            <div class="fireworks-bg"></div>
+            <div class="floating-hearts"></div>
+            
+            <div class="main-title">
+                <h1 class="rainbow-text">💗CHÚC MỪNG SINH NHẬT BẠN TÔI💗</h1>
+                <div class="subtitle">Nghi Vũ</div>
+            </div>
+            <div class="birthday-card-section">
+                <div class="card-3d">
+                    <div class="card-imgBox">
+                        <div class="card-bark"></div>
+                        <img src="img/anh1.jpg" alt="Birthday">           
+                    </div>
+                    <div class="card-details">
+                        <h4>(HAPPY BIRTHDAY)</h4>
+                        <p>Chúc mừng sinh nhật bạn tui</p>  
+                        <p>Chúc bạn tui tuổi 18 xinh đẹp</p>
+                        <p>Thật nhiều thành công</p>
+                        <p>Kiếm được a người iu chiều chuộng</p>
+                        <p>Chúc m không hấp tấp vội vàng</p>
+                        <p>Nhiều tiền, thành công trên con đường m đã chọn</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="showLetter()">
+                Mở quà nè
+            </button>
+        </div>
+    <div id="heartGallery" class="heart-gallery" style="display:none;"></d iv>
+    <script src="lang.js"></script>
+</body>
+</html>
