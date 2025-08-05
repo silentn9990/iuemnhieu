@@ -247,14 +247,15 @@
                 // Sự kiện cho cả desktop và mobile
                 card3D.addEventListener('click', function() {
                     this.classList.toggle('active');
+                    // Mở thư ngay khi chạm vào
+                    openLetter();
                 });
-                
-                // Sự kiện touch cho mobile
-                card3D.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    this.classList.toggle('active');
-                });
-                
+                // XÓA touchstart để tránh nhấn giữ
+                // card3D.addEventListener('touchstart', function(e) {
+                //     e.preventDefault();
+                //     this.classList.toggle('active');
+                //     openLetter();
+                // });
                 // Tự động chạy chữ sau 2 giây
                 setTimeout(() => {
                     typeCardText();
