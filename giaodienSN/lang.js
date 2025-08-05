@@ -207,7 +207,7 @@
 
 
         function checkPassword() {
-            if (display.value === '10082007') {
+            if (display.value === '13072006') {
                 calculatorScreen.style.display = 'none';
                 birthdayScreen.style.display = 'block';
 
@@ -398,7 +398,7 @@
 
         // Sửa lại checkPassword để chỉ hiện bức thư, chưa hiện nội dung
         function checkPassword() {
-            if (display.value === '10082007') {
+            if (display.value === '13072006') {
                 calculatorScreen.style.display = 'none';
                 birthdayScreen.style.display = 'block';
 
